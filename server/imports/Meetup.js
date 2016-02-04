@@ -1,5 +1,7 @@
 import moment from 'moment';
 
+let parsePhoto = (rsvp) => rsvp['member_photo'] && rsvp.member_photo.photo_link ? rsvp.member_photo.photo_link : 'http://lorempixel.com/300/300/cats';
+
 export default Meetup = {
 
     getMeetups() {
@@ -63,7 +65,15 @@ export default Meetup = {
                 }
             );
 
-            return meetupResult.data.results;
+            let rsvps = meetupResult.data.results;
+
+            if(rsvps.length) {
+                return rsvps
+                    .filter( (rsvp) => rsvp.response = "yes" )
+                    .map( (rsvp) => ({ name: rsvp.member.name, photo: parsePhoto(rsvp) }) );
+            } else {
+                return [];
+            }
 
         } catch (e) {
 

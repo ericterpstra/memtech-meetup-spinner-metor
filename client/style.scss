@@ -1,0 +1,88 @@
+* { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.photospinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.photocontainer {
+  display: flex;
+  width: 100%;
+  height: 90%;
+  align-content: center;
+  transform-style: preserve-3d;
+}
+
+.photoset {
+  position: relative;
+  align-self: center;
+  margin: 0 auto;
+  transform-style: preserve-3d;
+}
+
+.photo {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  margin: 0;
+  //background-color: black;
+
+  .photo-contain {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .caption {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-font-smoothing:antialiased;
+
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+
+    background-color: rgba(64,64,64,0.4);
+    z-index: 2;
+
+    p{
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    max-height: 100%;
+    height: auto;
+    z-index: 1;
+  }
+  /*
+  &:before {
+       content: '';
+       pointer-events: none;
+       position: absolute;
+       z-index: -1;
+       top: 100%;
+       left: 5%;
+       height: 10px;
+       width: 90%;
+       opacity: 1;
+       background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 70%);
+   }
+   */
+}

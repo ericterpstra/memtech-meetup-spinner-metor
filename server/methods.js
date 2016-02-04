@@ -19,14 +19,12 @@ Meteor.methods({
         } else {
 
             // If it's too old, refresh from Meetup.com and return new list.
-
             let meetupList = meetupTool.getMeetups();
 
-            MeetupsCollection.remove(meetupList._id);
-
-            MeetupsCollection.insert({
-                data: meetupList.data,
-                time: new Date()
+            MeetupsCollection.upsert({key:'heyo'},{
+                data: meetupList,
+                time: new Date(),
+                key: 'heyo'
             });
 
             return meetupList;
@@ -46,20 +44,20 @@ Meteor.methods({
         } else {
 
             // If it's too old, refresh from Meetup.com and return new list.
-
             let newRsvpData = meetupTool.getMeetupRsvps(meetupId);
 
-            if(meetupRsvpData) {
-                MeetupCollection.remove(meetupRsvpData._id);
-            }
+            MeetupCollection.upsert(
+                {
+                    meetupId: meetupId
+                },
+                {
+                    data: newRsvpData,
+                    time: new Date(),
+                    meetupId: meetupId
+                }
+            );
 
-            MeetupCollection.insert({
-                data: newRsvpData,
-                meetupId: meetupId,
-                time: new Date()
-            });
-
-            return newMeetupData;
+            return newRsvpData;
         }
     }
 
