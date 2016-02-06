@@ -1,8 +1,15 @@
 import React from 'react';
 import SpinnerItem from './SpinnerItem.jsx';
 import TweenMax from 'gsap';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import RaisedButton from 'material-ui/lib/raised-button';
+import Slider from 'material-ui/lib/slider';
+import SelectField from 'material-ui/lib/select-field';
+import MenuItem from 'material-ui/lib/menus/menu-item';
+
 
 const r = require('random-js')();
+injectTapEventPlugin();
 
 
 export default class Spinner  extends React.Component {
@@ -30,7 +37,9 @@ export default class Spinner  extends React.Component {
 
 
     render() {
-        let meetups = this.props.meetups.map((meetup) => <option key={meetup.id} value={meetup.id}>{meetup.name}</option>);
+        let meetups = this.props.meetups.map((meetup) => <MenuItem key={meetup.id} value={meetup.id} primaryText={meetup.name} />);
+        meetups = [<MenuItem key='0' value='' primaryText='Choose A Meetup'/>].concat(meetups) ;
+
         let photos = this.props.spinnerItems
             .map( (item, i) =>
                 <SpinnerItem src={item.photo}
@@ -56,24 +65,38 @@ export default class Spinner  extends React.Component {
 
                 <div className='photo-controls'>
 
-                    <div>
-                        <label>Meetup ID:</label>
-                        <select onChange={this.onChangeMeetup.bind(this)}>
+                    <div className='control-wrap'>
+                        <SelectField
+                            className={'meetup-select'}
+                            style={{width: '100%'}}
+                            value=''
+                            onChange={this.onChangeMeetup.bind(this)}
+                            autoWidth={true} >
                             {meetups}
-                        </select>
+                        </SelectField>
                     </div>
 
-                    <button onClick={this.onSpin.bind(this)}>Spin!</button>
-
-                    <div>
-                        <label>Photo Size: </label>
-                        <input type='range'
-                               min='50'
-                               max='250'
-                               value={this.props.lengthOfSide}
-                               onChange={this.onChangeLengthOfSide.bind(this)}
-                               step='10' />
+                    <div className='control-wrap'>
+                        <RaisedButton
+                            className={'spin-button'}
+                            style={{width: '100%'}}
+                            secondary={true}
+                            label='Spin!'
+                            onClick={this.onSpin.bind(this)}
+                        />
                     </div>
+
+                    <div className='control-wrap'>
+                        <Slider
+                            className={'size-slider'}
+                            min={50}
+                            max={250}
+                            value={this.props.lengthOfSide}
+                            onChange={this.onChangeLengthOfSide.bind(this)}
+                            step={10}
+                        />
+                    </div>
+
                 </div>
 
 
@@ -82,8 +105,8 @@ export default class Spinner  extends React.Component {
 
     }
 
-    onChangeMeetup(e) {
-        this.props.getSelectedItem(e.target.value);
+    onChangeMeetup(e,i,value) {
+        this.props.getSelectedItem(value);
     }
 
     onSpin() {
@@ -110,8 +133,8 @@ export default class Spinner  extends React.Component {
         });
     }
 
-    onChangeLengthOfSide(e) {
-        let val = e.target.value;
+    onChangeLengthOfSide(e, value) {
+        let val = value;
 
         this.setState({
             winner: -1,

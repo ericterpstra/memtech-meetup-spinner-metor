@@ -13,6 +13,25 @@ html, body, #root {
   height: 100%;
 }
 
+.photo-controls {
+  min-width: 400px;
+}
+
+.control-wrap {
+  display: block;
+  width: 100%;
+}
+
+.meetup-select {
+  width: 100%;
+}
+
+.spin-button {
+  width: 100%;
+}
+
+
+
 .photocontainer {
   display: flex;
   width: 100%;
@@ -71,7 +90,7 @@ html, body, #root {
     height: auto;
     z-index: 1;
   }
-  /*
+
   &:before {
        content: '';
        pointer-events: none;
@@ -84,5 +103,10 @@ html, body, #root {
        opacity: 1;
        background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 70%);
    }
-   */
+
+}
+
+#root {
+  background-image: linear-gradient(#fff6e4, #8b9da9);
+  box-shadow: inset 0 0 100px hsla(0,0%,0%,.3);
 }
