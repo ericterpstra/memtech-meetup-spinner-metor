@@ -4,7 +4,6 @@ var TweenMax = require('gsap');
 export default class SpinnerItem extends React.Component {
 
     getStyle() {
-        //'transform': `rotateY(${o}deg) translateZ(${a}px)`,
         return {
             width: this.props.lengthOfSide,
             height: this.props.lengthOfSide
@@ -20,10 +19,9 @@ export default class SpinnerItem extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        //this.setRotation();
         if (this.props.index == nextProps.winner) {
-            let winner = this.refs.photocontainer.getDOMNode();
-            let winnerp = this.refs.photo.getDOMNode();
+            let winner = this.refs.photocontainer;
+            let winnerp = this.refs.photo;
             TweenMax.to(winner, 1, {
                 scale: '1.5',
 

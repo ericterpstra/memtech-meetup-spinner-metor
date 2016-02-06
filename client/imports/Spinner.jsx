@@ -57,6 +57,29 @@ export default class Spinner  extends React.Component {
         return (
             <div className='photospinner'>
 
+
+
+                <div className='photo-controls'>
+
+                    <SelectField
+                        className={'meetup-select'}
+                        style={{width: '100%'}}
+                        value=''
+                        onChange={this.onChangeMeetup.bind(this)}
+                        autoWidth={true} >
+                        {meetups}
+                    </SelectField>
+
+                    <RaisedButton
+                        className={'spin-button'}
+                        style={{width: '100%'}}
+                        secondary={true}
+                        label='Spin!'
+                        onClick={this.onSpin.bind(this)}
+                    />
+
+                </div>
+
                 <div className='photocontainer' style={this.getContainerStyle.call(this)}>
                     <div ref='spinner' className='photoset' style={this.getPhotosetStyle.call(this)}>
                         {photos}
@@ -64,41 +87,15 @@ export default class Spinner  extends React.Component {
                 </div>
 
                 <div className='photo-controls'>
-
-                    <div className='control-wrap'>
-                        <SelectField
-                            className={'meetup-select'}
-                            style={{width: '100%'}}
-                            value=''
-                            onChange={this.onChangeMeetup.bind(this)}
-                            autoWidth={true} >
-                            {meetups}
-                        </SelectField>
-                    </div>
-
-                    <div className='control-wrap'>
-                        <RaisedButton
-                            className={'spin-button'}
-                            style={{width: '100%'}}
-                            secondary={true}
-                            label='Spin!'
-                            onClick={this.onSpin.bind(this)}
-                        />
-                    </div>
-
-                    <div className='control-wrap'>
-                        <Slider
-                            className={'size-slider'}
-                            min={50}
-                            max={250}
-                            value={this.props.lengthOfSide}
-                            onChange={this.onChangeLengthOfSide.bind(this)}
-                            step={10}
-                        />
-                    </div>
-
+                    <Slider
+                        className={'size-slider'}
+                        min={50}
+                        max={250}
+                        value={this.props.lengthOfSide}
+                        onChange={this.onChangeLengthOfSide.bind(this)}
+                        step={10}
+                    />
                 </div>
-
 
             </div>
         );

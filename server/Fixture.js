@@ -1,10 +1,8 @@
 import Meetup from './imports/Meetup';
 
 if( MeetupsCollection.find({}).count() <= 0 ) {
-    let res = Meetup.getMeetups();
-
     let meetup = {
-        data: res,
+        data: resMeetup.getMeetups(),
         time: new Date()
     };
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import Controls from './Controls.jsx';
 import Spinner from './Spinner.jsx';
 
 export default class App extends React.Component {
@@ -13,7 +12,6 @@ export default class App extends React.Component {
     }
 
     componentWillMount() {
-        console.log('App Will Mount');
         Meteor.call('getMeetups', (error, response) => {
             this.setState({
                 meetups: response
