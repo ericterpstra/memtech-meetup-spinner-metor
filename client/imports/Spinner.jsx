@@ -57,8 +57,6 @@ export default class Spinner  extends React.Component {
         return (
             <div className='photospinner'>
 
-
-
                 <div className='photo-controls'>
 
                     <SelectField

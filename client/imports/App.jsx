@@ -23,8 +23,8 @@ export default class App extends React.Component {
         return (
             <Spinner
                 meetups={this.state.meetups}
-                spinnerItems={this.state.spinnerItems}
                 getSelectedItem={this.fetchMeetup.bind(this)}
+                spinnerItems={this.state.spinnerItems}
             />
         );
     }
@@ -36,14 +36,12 @@ export default class App extends React.Component {
                 return console.log(error.message);
             } else {
 
-                let len = response.len;
                 let items = response.map( (rsvp, i, arr) => ({
                     id: i,
                     angle: (360/arr.length) * i,
                     photo: rsvp.photo,
                     caption: rsvp.name
                 }));
-
 
                 this.setState({
                     spinnerItems: items
