@@ -12,7 +12,7 @@ Meteor.methods({
         // Check database.  If meetup list is new, return list.
         let meetupList = MeetupsCollection.findOne({});
 
-        if ( _isFetchedWithinMinutes(meetupList.time, 60) ) {
+        if (meetupList && _isFetchedWithinMinutes(meetupList.time, 60) ) {
 
             return meetupList.data;
 

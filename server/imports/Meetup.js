@@ -17,7 +17,7 @@ export default Meetup = {
                     params: {
                         key: Meteor.settings.MEETUP,
                         status: 'upcoming,past',
-                        'group_urlname': 'memphis-technology-user-groups',
+                        group_urlname: 'memphis-technology-user-groups',
                         time: [startTime, endTime].join()
                     }
                 }
